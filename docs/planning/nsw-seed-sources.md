@@ -95,3 +95,9 @@ Verification date for this batch: `2026-03-09`.
 - https://huntercommunityhub.org.au/contact/
 - https://huntermulticultural.org.au/contact/
 - https://www.emnc.org.au/
+- https://library.lakemac.com.au/Events/Craft-Club
+- https://www.maitlandlibrary.com.au/your-library/using-the-library/visiting-our-libraries?page=2
+- https://www.samaritans.org.au/contact-us/
+- https://www.mncinc.org.au/contact/
+- https://psfans.org.au/portfolio-item/child-family-counselling-casework/
+- https://psfans.org.au/portfolio-item/youth-counselling-and-casework/
