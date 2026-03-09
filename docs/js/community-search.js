@@ -33,6 +33,10 @@
     return String(text || "").replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
   }
 
+  function formatPhone(phone) {
+    return String(phone || "").replace(/\((\d{2,4})\)\s*/g, "$1 ").replace(/\s+/g, " ").trim();
+  }
+
   function haversineKm(lat1, lon1, lat2, lon2) {
     const R = 6371;
     const p = Math.PI / 180;
@@ -64,7 +68,7 @@
 
   function renderRows(rows) {
     if (!rows.length) {
-      tbodyEl.innerHTML = `<tr><td colspan="10" class="empty-state">No contacts matched this search. Try a larger radius, another suburb, or turn off the email-only filter.</td></tr>`;
+      tbodyEl.innerHTML = `<tr><td colspan="9" class="empty-state">No contacts matched this search. Try a larger radius, another suburb, or turn off the email-only filter.</td></tr>`;
       return;
     }
     tbodyEl.innerHTML = rows.map((r) => `
@@ -75,12 +79,11 @@
         <td>${esc(r.postcode)}</td>
         <td>${esc(r.distance_km)}</td>
         <td>${r.public_email ? `<a href="mailto:${esc(r.public_email)}">${esc(r.public_email)}</a>` : ""}</td>
-        <td>${r.phone ? `<a href="tel:${esc(r.phone)}">${esc(r.phone)}</a>` : ""}</td>
-        <td>${esc(r.address_line)}</td>
-        <td class="link-stack">
+        <td>${r.phone ? `<a href="tel:${esc(r.phone)}">${esc(formatPhone(r.phone))}</a>` : ""}</td>
+        <td><div class="link-stack">
           ${r.website_url ? `<a href="${esc(r.website_url)}" target="_blank" rel="noopener">Website</a>` : ""}
           ${r.source_url ? `<a href="${esc(r.source_url)}" target="_blank" rel="noopener">Source</a>` : ""}
-        </td>
+        </div></td>
         <td>${esc(r.workshop_relevance)}</td>
       </tr>
     `).join("");

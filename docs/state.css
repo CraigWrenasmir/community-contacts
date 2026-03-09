@@ -37,7 +37,7 @@ a:hover { text-decoration: underline; }
 .stat span { display: block; margin-top: 0.22rem; font-size: 0.82rem; color: var(--muted); }
 .check { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.55rem 0.8rem; border: 1px solid var(--line); border-radius: 999px; background: #f8fbfa; font-size: 0.92rem; color: var(--ink); }
 .check input { min-width: 0; width: 16px; height: 16px; margin: 0; padding: 0; accent-color: var(--accent); }
-.link-stack { display: flex; flex-direction: column; gap: 0.28rem; min-width: 88px; }
+.link-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 0.28rem; min-width: 88px; }
 .empty-state { padding: 0.95rem 0; color: var(--muted); font-size: 0.92rem; }
 .flavour { display: none; margin-top: 0.5rem; padding: 0.5rem 0.85rem; background: #f0faf8; border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 0.88rem; color: var(--muted); font-style: italic; }
 .flavour.visible { display: block; }
