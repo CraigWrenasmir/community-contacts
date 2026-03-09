@@ -93,7 +93,7 @@
     const regional = new Set(state.contacts.map((r) => `${r.suburb}|${r.postcode}`)).size;
 
     datasetStatsEl.innerHTML = [
-      { value: total, label: "NSW contacts loaded" },
+      { value: total, label: `${stateName} contacts loaded` },
       { value: categories, label: "categories covered" },
       { value: emailCount, label: "contacts with public email" },
       { value: regional, label: "suburb and postcode points" },
