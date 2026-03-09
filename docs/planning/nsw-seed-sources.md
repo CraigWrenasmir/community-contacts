@@ -113,3 +113,6 @@ Verification date for this batch: `2026-03-09`.
 - https://www.careways.org.au/contact-us/
 - https://syfs.org.au/contact-us/
 - https://mcci.org.au/contact-us/
+- https://libraries.coffsharbour.nsw.gov.au/About-us/Contact-us
+- https://chnc.com.au/
+- https://nrcg.org.au/contact-details/
