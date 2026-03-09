@@ -109,3 +109,7 @@ Verification date for this batch: `2026-03-09`.
 - https://uhcs.org.au/index.php/programs-and-services/muswellbrook-neighbourhood-service
 - https://www.uhcs.org.au/index.php/programs-and-services/upper-hunter-family-support-service
 - https://www.uhys.org.au/contact-us/
+- https://www.wollongong.nsw.gov.au/community/community-wellbeing/children-and-youth/youth-services
+- https://www.careways.org.au/contact-us/
+- https://syfs.org.au/contact-us/
+- https://mcci.org.au/contact-us/
