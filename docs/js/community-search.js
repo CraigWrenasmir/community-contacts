@@ -10,6 +10,9 @@
     lastSearch: null,
   };
 
+  let currentRows = [];
+  let selectedIndices = new Set();
+
   const locationEl = document.getElementById("location");
   const categoryEl = document.getElementById("category");
   const radiusEl = document.getElementById("radius");
@@ -66,13 +69,27 @@
     throw new Error(`Could not resolve location \"${query}\" to ${stateName} suburb/postcode.`);
   }
 
+  function updateCopyBtn() {
+    const n = selectedIndices.size;
+    if (n > 0) {
+      copyBtn.textContent = `Copy ${n} Selected`;
+      copyBtn.disabled = false;
+    } else {
+      copyBtn.textContent = "Copy All Emails";
+      copyBtn.disabled = !currentRows.some((r) => (r.public_email || "").trim().length > 0);
+    }
+  }
+
   function renderRows(rows) {
+    selectedIndices.clear();
     if (!rows.length) {
-      tbodyEl.innerHTML = `<tr><td colspan="6" class="empty-state">No contacts matched this search. Try a larger radius, another suburb, or turn off the email-only filter.</td></tr>`;
+      tbodyEl.innerHTML = `<tr><td colspan="7" class="empty-state">No contacts matched this search. Try a larger radius, another suburb, or turn off the email-only filter.</td></tr>`;
+      updateCopyBtn();
       return;
     }
-    tbodyEl.innerHTML = rows.map((r) => `
+    tbodyEl.innerHTML = rows.map((r, i) => `
       <tr>
+        <td class="sel-col"><input type="checkbox" class="row-sel" data-idx="${i}"></td>
         <td>${esc(r.organisation_name)}</td>
         <td>${esc(r.category)}</td>
         <td>${esc(r.suburb)}</td>
@@ -84,6 +101,7 @@
         </div></td>
       </tr>
     `).join("");
+    updateCopyBtn();
   }
 
   function renderDatasetStats() {
@@ -105,8 +123,9 @@
     copyMetaEl.textContent = "";
     metaEl.textContent = "";
     tableEl.hidden = true;
-    copyBtn.disabled = true;
     state.lastRows = [];
+    currentRows = [];
+    selectedIndices.clear();
 
     try {
       const center = resolveCenter(locationEl.value);
@@ -123,10 +142,11 @@
         .sort((a, b) => a.distance_km - b.distance_km)
         .map((r) => ({ ...r, distance_km: Number(r.distance_km.toFixed(2)) }));
 
-      const uniqueEmails = new Set(state.lastRows.map((r) => (r.public_email || "").trim()).filter(Boolean)).size;
-      metaEl.textContent = `${state.lastRows.length} contacts within ${radiusKm} km of ${center.label} (${categoryLabel}${emailOnly ? ", email only" : ""}). ${uniqueEmails} unique public email address(es) in results.`;
-      copyBtn.disabled = !state.lastRows.some((r) => (r.public_email || "").trim().length > 0);
-      renderRows(state.lastRows);
+      currentRows = [...state.lastRows];
+
+      const uniqueEmails = new Set(currentRows.map((r) => (r.public_email || "").trim()).filter(Boolean)).size;
+      metaEl.textContent = `${currentRows.length} contacts within ${radiusKm} km of ${center.label} (${categoryLabel}${emailOnly ? ", email only" : ""}). ${uniqueEmails} unique public email address(es) in results.`;
+      renderRows(currentRows);
       tableEl.hidden = false;
     } catch (err) {
       errEl.textContent = err.message || "Search failed.";
@@ -144,20 +164,41 @@
     tbodyEl.innerHTML = "";
     tableEl.hidden = true;
     state.lastRows = [];
+    currentRows = [];
+    selectedIndices.clear();
+    copyBtn.textContent = "Copy All Emails";
     copyBtn.disabled = true;
   }
 
   async function copyEmails() {
-    const emails = [...new Set(state.lastRows.map((r) => (r.public_email || "").trim()).filter((x) => x.length > 0))];
-    if (!emails.length) {
-      copyMetaEl.textContent = "No public emails found in current result set.";
-      return;
-    }
-    try {
-      await navigator.clipboard.writeText(emails.join("\n"));
-      copyMetaEl.textContent = `Copied ${emails.length} unique email address(es).`;
-    } catch (_e) {
-      copyMetaEl.textContent = "Clipboard copy failed in this browser context.";
+    if (selectedIndices.size > 0) {
+      const selected = [...selectedIndices]
+        .sort((a, b) => a - b)
+        .map((i) => currentRows[i])
+        .filter((r) => (r.public_email || "").trim().length > 0);
+      if (!selected.length) {
+        copyMetaEl.textContent = "None of the selected contacts have a public email.";
+        return;
+      }
+      const lines = selected.map((r) => `${r.organisation_name} <${r.public_email.trim()}>`);
+      try {
+        await navigator.clipboard.writeText(lines.join("\n"));
+        copyMetaEl.textContent = `Copied ${lines.length} selected address(es) in Name <email> format.`;
+      } catch (_e) {
+        copyMetaEl.textContent = "Clipboard copy failed in this browser context.";
+      }
+    } else {
+      const emails = [...new Set(currentRows.map((r) => (r.public_email || "").trim()).filter((x) => x.length > 0))];
+      if (!emails.length) {
+        copyMetaEl.textContent = "No public emails found in current result set.";
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(emails.join("\n"));
+        copyMetaEl.textContent = `Copied ${emails.length} unique email address(es).`;
+      } catch (_e) {
+        copyMetaEl.textContent = "Clipboard copy failed in this browser context.";
+      }
     }
   }
 
@@ -186,6 +227,47 @@
     state.suburbCentroids = suburbs;
     initCategoryOptions();
     renderDatasetStats();
+
+    // Rename copy button
+    copyBtn.textContent = "Copy All Emails";
+
+    // Inject select-all checkbox into thead
+    const theadTr = tableEl.querySelector("thead tr");
+    const selTh = document.createElement("th");
+    selTh.className = "sel-col";
+    const selAllEl = document.createElement("input");
+    selAllEl.type = "checkbox";
+    selAllEl.title = "Select / deselect all";
+    selTh.appendChild(selAllEl);
+    theadTr.insertAdjacentElement("afterbegin", selTh);
+
+    // Select-all handler
+    selAllEl.addEventListener("change", () => {
+      const boxes = tbodyEl.querySelectorAll(".row-sel");
+      selectedIndices.clear();
+      boxes.forEach((box, i) => {
+        box.checked = selAllEl.checked;
+        if (selAllEl.checked) selectedIndices.add(i);
+        box.closest("tr").classList.toggle("row-selected", selAllEl.checked);
+      });
+      updateCopyBtn();
+    });
+
+    // Individual row checkbox handler (delegated)
+    tbodyEl.addEventListener("change", (e) => {
+      if (!e.target.matches(".row-sel")) return;
+      const idx = Number(e.target.dataset.idx);
+      if (e.target.checked) {
+        selectedIndices.add(idx);
+      } else {
+        selectedIndices.delete(idx);
+      }
+      e.target.closest("tr").classList.toggle("row-selected", e.target.checked);
+      const total = tbodyEl.querySelectorAll(".row-sel").length;
+      selAllEl.indeterminate = selectedIndices.size > 0 && selectedIndices.size < total;
+      selAllEl.checked = total > 0 && selectedIndices.size === total;
+      updateCopyBtn();
+    });
 
     searchBtn.addEventListener("click", runSearch);
     clearBtn.addEventListener("click", clearSearch);
