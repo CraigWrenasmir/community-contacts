@@ -122,3 +122,5 @@ Verification date for this batch: `2026-03-09`.
 - https://headspace.org.au/headspace-centres/port-macquarie/
 - https://thefamilycentre.org.au/the-family-centre-locations/
 - https://www.pcycnsw.org.au/tweed-heads/
+- https://headspace.org.au/headspace-centres/grafton/
+- https://headspace.org.au/headspace-centres/lismore/
