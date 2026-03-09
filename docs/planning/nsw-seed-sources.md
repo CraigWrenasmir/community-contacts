@@ -118,3 +118,5 @@ Verification date for this batch: `2026-03-09`.
 - https://nrcg.org.au/contact-details/
 - https://galambila.org.au/contact/
 - https://saltwaterfreshwater.com.au/contact/
+- https://headspace.org.au/headspace-centres/coffs-harbour/
+- https://headspace.org.au/headspace-centres/port-macquarie/
