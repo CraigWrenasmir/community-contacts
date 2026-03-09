@@ -91,3 +91,7 @@ Verification date for this batch: `2026-03-09`.
 - https://www.ssi.org.au/contact-us/
 - https://www.sdn.org.au/aac-clinic/
 - https://www.pcycnsw.org.au/contact-us
+- https://www.newcastle.nsw.gov.au/about-us/contact-us/council-directory
+- https://huntercommunityhub.org.au/contact/
+- https://huntermulticultural.org.au/contact/
+- https://www.emnc.org.au/
