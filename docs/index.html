@@ -74,7 +74,12 @@
       <a class="state-card" href="./nsw.html">
         <span class="abbr">NSW</span>
         <span class="name">New South Wales</span>
-        <span class="badge" id="nswBadge">Testing build</span>
+        <span class="badge" id="nswBadge">Loading…</span>
+      </a>
+      <a class="state-card" href="./qld.html">
+        <span class="abbr">QLD</span>
+        <span class="name">Queensland</span>
+        <span class="badge" id="qldBadge">Loading…</span>
       </a>
     </div>
 
@@ -82,13 +87,18 @@
   </div>
 
   <script>
-    fetch("./data/nsw/contacts.min.json")
-      .then((r) => r.json())
-      .then((rows) => {
-        const badge = document.getElementById("nswBadge");
-        if (badge) badge.textContent = `${rows.length} contacts live`;
-      })
-      .catch(() => {});
+    [["nsw","nswBadge"],["qld","qldBadge"]].forEach(([state, id]) => {
+      fetch(`./data/${state}/contacts.min.json`)
+        .then((r) => r.json())
+        .then((rows) => {
+          const badge = document.getElementById(id);
+          if (badge) badge.textContent = `${rows.length} contacts live`;
+        })
+        .catch(() => {
+          const badge = document.getElementById(id);
+          if (badge) badge.textContent = "Coming soon";
+        });
+    });
   </script>
 </body>
 </html>
