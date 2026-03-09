@@ -101,3 +101,11 @@ Verification date for this batch: `2026-03-09`.
 - https://www.mncinc.org.au/contact/
 - https://psfans.org.au/portfolio-item/child-family-counselling-casework/
 - https://psfans.org.au/portfolio-item/youth-counselling-and-casework/
+- https://www.cessnock.nsw.gov.au/libraries/About-us/Visit-a-branch
+- https://cfss.ngo.org.au/contact-us/
+- https://library.singleton.nsw.gov.au/Montage/Default.aspx
+- https://www.singleton.nsw.gov.au/Live/Residents/Youth-Venue/About-the-Youth-Venue
+- https://singletonfamilysupport.org.au/contact-us/
+- https://uhcs.org.au/index.php/programs-and-services/muswellbrook-neighbourhood-service
+- https://www.uhcs.org.au/index.php/programs-and-services/upper-hunter-family-support-service
+- https://www.uhys.org.au/contact-us/
