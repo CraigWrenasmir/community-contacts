@@ -75,20 +75,45 @@
     </div>
 
     <div class="state-grid">
+      <a class="state-card" href="./act.html">
+        <span class="abbr">ACT</span>
+        <span class="name">Australian Capital Territory</span>
+        <span class="badge" id="actBadge">Loading…</span>
+      </a>
       <a class="state-card" href="./nsw.html">
         <span class="abbr">NSW</span>
         <span class="name">New South Wales</span>
         <span class="badge" id="nswBadge">Loading…</span>
+      </a>
+      <a class="state-card" href="./nt.html">
+        <span class="abbr">NT</span>
+        <span class="name">Northern Territory</span>
+        <span class="badge" id="ntBadge">Loading…</span>
       </a>
       <a class="state-card" href="./qld.html">
         <span class="abbr">QLD</span>
         <span class="name">Queensland</span>
         <span class="badge" id="qldBadge">Loading…</span>
       </a>
+      <a class="state-card" href="./sa.html">
+        <span class="abbr">SA</span>
+        <span class="name">South Australia</span>
+        <span class="badge" id="saBadge">Loading…</span>
+      </a>
+      <a class="state-card" href="./tas.html">
+        <span class="abbr">TAS</span>
+        <span class="name">Tasmania</span>
+        <span class="badge" id="tasBadge">Loading…</span>
+      </a>
       <a class="state-card" href="./vic.html">
         <span class="abbr">VIC</span>
         <span class="name">Victoria</span>
         <span class="badge" id="vicBadge">Loading…</span>
+      </a>
+      <a class="state-card" href="./wa.html">
+        <span class="abbr">WA</span>
+        <span class="name">Western Australia</span>
+        <span class="badge" id="waBadge">Loading…</span>
       </a>
     </div>
 
@@ -96,7 +121,7 @@
   </div>
 
   <script>
-    [["nsw","nswBadge"],["qld","qldBadge"],["vic","vicBadge"]].forEach(([state, id]) => {
+    [["act","actBadge"],["nsw","nswBadge"],["nt","ntBadge"],["qld","qldBadge"],["sa","saBadge"],["tas","tasBadge"],["vic","vicBadge"],["wa","waBadge"]].forEach(([state, id]) => {
       fetch(`./data/${state}/contacts.min.json`)
         .then((r) => r.json())
         .then((rows) => {
