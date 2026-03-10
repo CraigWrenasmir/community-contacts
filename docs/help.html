@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to use — Community Contacts Radius Search</title>
+  <style>
+    :root {
+      --bg: #f4f7f6;
+      --card: #ffffff;
+      --ink: #1a2b2f;
+      --accent: #0b8a7c;
+      --accent-dark: #076b60;
+      --line: #d7e5e2;
+      --muted: #56696c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      background: linear-gradient(160deg, #d8f0eb 0%, var(--bg) 45%);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    .topnav {
+      margin-bottom: 2rem;
+    }
+
+    .topnav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .topnav a:hover { text-decoration: underline; }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 {
+      margin: 0 0 0.4rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* -- Cards -- */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    }
+
+    .card h2 {
+      margin: 0 0 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card h2 .icon { font-size: 1.15rem; }
+
+    /* -- Steps -- */
+    .steps { list-style: none; margin: 0; padding: 0; }
+
+    .steps li {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .steps li:last-child { margin-bottom: 0; }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-top: 0.1rem;
+    }
+
+    .step-body { flex: 1; }
+    .step-body strong { display: block; margin-bottom: 0.2rem; }
+    .step-body p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+
+    /* -- Feature rows -- */
+    .feature-list { list-style: none; margin: 0; padding: 0; }
+
+    .feature-list li {
+      border-bottom: 1px solid var(--line);
+      padding: 0.75rem 0;
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      font-size: 0.93rem;
+    }
+
+    .feature-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .feature-list li:first-child { padding-top: 0; }
+
+    .feature-label {
+      flex-shrink: 0;
+      min-width: 160px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .feature-desc { color: var(--muted); }
+
+    /* -- FAQ -- */
+    .faq { list-style: none; margin: 0; padding: 0; }
+
+    .faq li {
+      border-bottom: 1px solid var(--line);
+      padding: 0.9rem 0;
+    }
+
+    .faq li:last-child { border-bottom: none; padding-bottom: 0; }
+    .faq li:first-child { padding-top: 0; }
+
+    .faq-q {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* -- Tip box -- */
+    .tip {
+      background: #f0faf8;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+
+    .tip strong { color: var(--ink); }
+
+    /* -- Footer -- */
+    .footnote {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topnav">
+      <a href="./index.html">&larr; Back to home</a>
+    </div>
+
+    <div class="hero">
+      <div class="hero-icon">📖</div>
+      <h1>How to use this site</h1>
+      <p>Everything you need to find, select, and copy community organisation contacts for workshop outreach.</p>
+    </div>
+
+    <!-- Quick start -->
+    <div class="card">
+      <h2><span class="icon">🚀</span> Quick start</h2>
+      <ol class="steps">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Choose a state or territory</strong>
+            <p>From the homepage, click the card for the region you want to search. Each card shows how many community contacts are in the database.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Enter a location and radius</strong>
+            <p>Type a postcode (e.g. <em>5000</em>) or suburb name (e.g. <em>Adelaide</em>) into the search box. Choose your radius — 10–20 km works well in metro areas, 50–100 km for regional and remote coverage.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Copy what you need</strong>
+            <p>Use <strong>Copy All Emails</strong> to grab every email in the results, or tick individual organisations first to copy just a targeted selection.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Feature guide -->
+    <div class="card">
+      <h2><span class="icon">🛠</span> Feature guide</h2>
+      <ul class="feature-list">
+        <li>
+          <span class="feature-label">Category filter</span>
+          <span class="feature-desc">Narrow results by organisation type — for example, Allied Health, Early Childhood &amp; Family Services, Disability Advocacy, Parent/Carer Support, or any of the 15 category types — using the dropdown next to the search box.</span>
+        </li>
+        <li>
+          <span class="feature-label">Email only</span>
+          <span class="feature-desc">Toggle this checkbox to hide organisations that don't have a public email address, so you only see contacts you can email directly.</span>
+        </li>
+        <li>
+          <span class="feature-label">Checkboxes</span>
+          <span class="feature-desc">Tick individual rows to build a custom selection. Use the checkbox in the column header to select or deselect everything at once.</span>
+        </li>
+        <li>
+          <span class="feature-label">Copy All Emails</span>
+          <span class="feature-desc">When no rows are checked, copies every email address in the current results to your clipboard — one address per line, ready to paste into your email client's BCC field.</span>
+        </li>
+        <li>
+          <span class="feature-label">Copy N Selected</span>
+          <span class="feature-desc">When rows are checked, the copy button changes to show how many are selected. Copying in this mode uses the richer <em>Organisation Name &lt;email@address&gt;</em> format, which most email clients will display as a named recipient.</span>
+        </li>
+        <li>
+          <span class="feature-label">Website / Source links</span>
+          <span class="feature-desc">Where available, links to the organisation's website or the source where the contact was found are shown in the Links column. These open in a new tab.</span>
+        </li>
+      </ul>
+      <div class="tip">
+        <strong>Tip:</strong> Selecting rows and then toggling <em>Email only</em> will reset your selection — so apply any filters before you start ticking.
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="card">
+      <h2><span class="icon">💬</span> Frequently asked questions</h2>
+      <ul class="faq">
+        <li>
+          <p class="faq-q">What kind of organisations are included?</p>
+          <p class="faq-a">The database covers 15 categories of community organisations relevant to autism workshop promotion: Allied Health providers, Disability Advocacy groups, Early Childhood &amp; Family Services, NDIS providers, Parent/Carer Support groups, Cultural &amp; Multicultural Organisations, Councils &amp; Libraries, Sport &amp; Recreation programs, and more. The full list appears in the category dropdown on each state page.</p>
+        </li>
+        <li>
+          <p class="faq-q">Why do some organisations show no email address?</p>
+          <p class="faq-a">Not every organisation publishes a direct email on their website. Some use web-based contact forms instead. Where possible we've included a link to the organisation's website so you can find their preferred contact method.</p>
+        </li>
+        <li>
+          <p class="faq-q">Where does the data come from?</p>
+          <p class="faq-a">Contacts are sourced from publicly available directories, government listings, peak body member lists, and organisation websites. Only publicly listed contact details are included — no private or scraped data is used.</p>
+        </li>
+        <li>
+          <p class="faq-q">How current is the data?</p>
+          <p class="faq-a">The database was compiled in early 2026. Organisation details can change — if you find an out-of-date contact, the organisation's website will always have the most current information.</p>
+        </li>
+        <li>
+          <p class="faq-q">Why are some regions or categories sparse?</p>
+          <p class="faq-a">Coverage is strongest in metropolitan areas and for well-established organisation types. Remote and very regional areas may have fewer results. Try increasing your search radius to capture nearby towns and regional centres.</p>
+        </li>
+        <li>
+          <p class="faq-q">What's the best way to email a curated list of organisations?</p>
+          <p class="faq-a">Tick the organisations you want, then use <strong>Copy N Selected</strong>. This copies addresses in <em>Name &lt;email&gt;</em> format. Paste the whole block into your email client's BCC field — most clients (Gmail, Outlook, Apple Mail) will recognise each line as a separate named recipient automatically.</p>
+        </li>
+        <li>
+          <p class="faq-q">Can I search across multiple states at once?</p>
+          <p class="faq-a">Not currently — each state has its own page and database. For cross-border searches (e.g. the ACT/NSW border region), run a search on each relevant state page and combine your results.</p>
+        </li>
+        <li>
+          <p class="faq-q">How is this different from the School Contacts tool?</p>
+          <p class="faq-a">The <a href="https://craigwrenasmir.github.io/school-contacts/index.html">School Contacts</a> tool focuses on schools (government, Catholic, independent). This tool covers the broader community sector — health services, support groups, councils, libraries, recreation programs, and other organisations that can help promote autism workshops beyond the school network.</p>
+        </li>
+      </ul>
+    </div>
+
+    <p class="footnote">
+      <a href="./index.html">&larr; Back to home</a>
+    </p>
+
+  </div>
+</body>
+</html>
